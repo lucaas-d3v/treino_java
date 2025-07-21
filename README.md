@@ -10,7 +10,7 @@ Os exercícios estão divididos em dois grupos:
 
 ## 📁 Estrutura do Repositório
 
-```bash
+```markdown
 ├── EntradaSaida/
   |   #arquivos aqui
 └── ArraysArrayList/
