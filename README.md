@@ -10,12 +10,12 @@ Os exercícios estão divididos em dois grupos:
 
 ## 📁 Estrutura do Repositório
 
-
+```bash
 ├── EntradaSaida/
-|   #arquivos aqui
+  |   #arquivos aqui
 └── ArraysArrayList/
-|   #arquivos aqui
-
+  |   #arquivos aqui
+```
 ---
 
 ## ⚙️ Pré-requisitos
