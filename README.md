@@ -30,15 +30,15 @@ Os exercícios estão divididos em dois grupos:
 1. Abra o terminal na raiz do repositório.
 2. Para compilar **todos** os arquivos de uma vez:
 
-  ```bash
-   javac EntradaSaida/*.java ArraysArrayList/*.java
-  ```
+```bash
+javac EntradaSaida/*.java ArraysArrayList/*.java
+```
 
 3. Ou compile um arquivo específico:
 
-   ```bash
-   javac EntradaSaida/SomaDoisNumeros.java
-   ```
+```bash
+javac EntradaSaida/SomaDoisNumeros.java
+```
 
 ---
 
