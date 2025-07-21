@@ -12,24 +12,9 @@ Os exercícios estão divididos em dois grupos:
 
 
 ├── EntradaSaida/
-│   ├── EntradaSaidaSimples.java
-│   ├── SomaDoisNumeros.java
-│   ├── ParOuImpar.java
-│   ├── CalculadoraMedia.java
-│   ├── ContadorFor.java
-│   ├── TabuadaWhile.java
-│   ├── ValidacaoSenha.java
-│   ├── NumeroMaior.java
-│   ├── CalculadoraIdade.java
-│   └── NumeroPrimo.java
-│
+|   #arquivos aqui
 └── ArraysArrayList/
-├── CadastroNomes.java
-├── MediaNotas.java
-├── CopiaArrays.java
-├── BuscaArrayList.java
-├── RemocaoItens.java
-└── ListaTarefas.java
+|   #arquivos aqui
 
 ---
 
