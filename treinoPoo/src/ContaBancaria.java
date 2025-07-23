@@ -13,7 +13,8 @@ Criar nova conta
 */
 
 
-import javax.swing.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class ContaBancaria
@@ -23,58 +24,70 @@ public class ContaBancaria
     String cpf;
     double saldo = 0;
 
-    private double depositar(Scanner ler) {
+    public String[] toArray(String frase)
+    {
+        return frase.split(" ");
+    }
+
+    public static double toDouble(String algo)
+    {
+        double valor = Double.parseDouble(algo);
+        return valor;
+    }
+
+    private void depositar(String cpf, HashMap<String, ArrayList<String>> dados, Scanner ler) {
         double valor_a_depositar = 0;
 
-        for (int i = 0; i != 1; i++) {
+        while (true)
+        {
             System.out.print("\nDigite o valor que quer depositar: ");
             valor_a_depositar = ler.nextDouble();
 
             if (valor_a_depositar < 20) {
                 System.out.println("\nPor favor, o depósito mínimo é de R$20.00");
-                i--;
+                continue;
             }
 
+            break;
         }
 
-        return valor_a_depositar;
+        String saldo_atual = dados.get(cpf).get(1);
+
+        this.saldo += toDouble(saldo_atual);
     }
 
 
-    private double sacar(Scanner ler) {
+    private void sacar(HashMap<String, ArrayList<String>> dados, Scanner ler) {
         double valor_a_ser_sacado = 0;
 
-        for (int i = 0; i != 1; i++) {
+        while (true) {
             System.out.print("\nDigite o valor a ser sacado: ");
             valor_a_ser_sacado = ler.nextDouble();
 
             if (valor_a_ser_sacado < 0.0)
             {
                 System.out.println("\nO valor digitado não pode ser nagativo!");
-                i--;
+                continue;
 
-                if (valor_a_ser_sacado == 0.0)
-                {
-                    System.out.println("\nO valor digitado não pode ser R$0!");
-                    i--;
-
-                }
             }
+            break;
         }
 
-        return valor_a_ser_sacado;
+        String saldo_atual = dados.get(cpf).get(1);
+
+        this.saldo -= toDouble(saldo_atual);
     }
 
     private static String pedirNome(Scanner ler)
     {
         while (true)
         {
-            System.out.println("====== Castro ======");
+            System.out.println("\n====== Castro ======");
 
             System.out.print("Digite o seu nome completo: ");
             String provavel_nome = ler.nextLine();
 
-            if (!Verificador.isAlpha(provavel_nome)) {
+            if (!Verificador.isName(provavel_nome)) {
                 System.out.println("\nDigite um nome válido!");
                 continue;
             }
@@ -113,7 +126,7 @@ public class ContaBancaria
         }
     }
 
-    private void cadastro(Scanner ler)
+    private void cadastro(Scanner ler, HashMap<String, ArrayList<String>> contas)
     {
         Verificador isAlpha = new Verificador();
 
@@ -121,20 +134,48 @@ public class ContaBancaria
         this.email = pedirEmail(ler);
         this.cpf = pedirCpf(ler);
 
+        salvarConta(this.nome, this.email, this.cpf);
+
+        intersecao(nome, cpf, email, ler, contas);
+    }
+
+    public void intersecao(String nome, String cpf, String email, Scanner ler, HashMap<String, ArrayList<String>> contas)
+    {
+        while (true)
+        {
+            System.out.print("\n[1] Consultar minha conta\n[2] Sair\n\nOque quer fazer? ");
+            String acao = ler.nextLine();
+
+            if (!Verificador.isNumber(acao)) {
+                if (acao != "1") {
+                    System.out.println("\nAção não existe!");
+                    continue;
+
+                }
+                System.out.println("\nAção não existe!");
+                continue;
+
+            }
+
+            break;
+        }
+
+        menuPrincipal(nome, cpf, email, ler, contas);
     }
 
     public void menuInicial(Scanner ler)
     {
+        HashMap<String, ArrayList<String>> contas = null;
+
         while (true)
         {
-
-            System.out.print("\n====== Conta Bancária ======\n\n[1] Se cadastrar\n[2] Fazer Login [3] Sair\n\noque quer fazer? ");
+            System.out.print("====== Conta Bancária ======\n\n\n[1] Se cadastrar\n[2] Fazer Login\n[3] Sair\n\noque quer fazer? ");
             String acao = ler.nextLine();
 
             if (Verificador.isNumber(acao)) {
                 switch (acao) {
                     case "1" -> {
-                        cadastro(ler);
+                        cadastro(ler, contas);
                         break;
                     }
 
@@ -144,12 +185,57 @@ public class ContaBancaria
                     }
                 }
             }
-
             System.out.println("\nA ação precisa existir!");
+
         }
     }
 
-    public static void main(String[] args)
+    public static HashMap<String, ArrayList<String>> salvarConta(String nome, String email, String cpf)
     {
+        HashMap<String, ArrayList<String>> contas = new HashMap<>();
+        ArrayList<String> resto = new ArrayList<>();
+
+        resto.add(nome);
+        resto.add(email);
+        resto.add("0.0");
+
+        contas.put(cpf, resto);
+
+        return contas;
+    }
+
+    private void menuPrincipal(String nome, String cpf, String email, Scanner ler, HashMap<String, ArrayList<String>> contas)
+    {
+        while (true) {
+            System.out.println("========= Bem-Vindo! " + this.nome.split(" ")[0] + "=========");
+            System.out.println("\n--------- Seus dados ---------");
+            System.out.println("\nNome completo: " + this.nome);
+            System.out.println("\nEmail: " + this.email);
+            System.out.println("\nSaldo: " + this.saldo);
+
+            System.out.print("\n[1] Depositar\n[2] Scar\n\nOq quer fazer? ");
+            String acao = ler.nextLine();
+
+            if (!Verificador.isNumber(acao)) {
+                System.out.println("\nAção não existe, por favor digite uma ação existente!");
+                continue;
+            }
+
+            if (acao.equals("1")) {
+                depositar(cpf, contas, ler);
+
+            } else if (acao.equals("2")) {
+                sacar(contas, ler);
+
+            } else if (acao.equals("3")) {
+                System.out.println("\nSaindo...");
+                break;
+
+            } else
+            {
+                System.out.println("\na ação não existe!");
+
+            }
+        }
     }
 }

@@ -2,7 +2,7 @@ public class Verificador {
 
     public static boolean isAlpha(String palavra)
     {
-        return palavra.trim().matches("\\p{IsAlphabetic}+");
+        return palavra.trim().matches("^\\p{IsAlphabetic}");
     }
 
     public static boolean isCpf(String cpf)
@@ -13,6 +13,11 @@ public class Verificador {
     public static boolean isEmail(String email)
     {
         return email.trim().matches("^[\\w._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    public static boolean isName(String nome)
+    {
+        return nome.trim().matches("[\\p{IsAlphabetic} ]+");
     }
 
     public static boolean isNumber(String n)
