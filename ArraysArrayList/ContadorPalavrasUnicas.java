@@ -21,7 +21,7 @@ public class ContadorPalavrasUnicas
 
     private static ArrayList<String> separar(String frase)
     {
-        ArrayList<String> palavras_temp = new ArrayList<String>();
+        ArrayList<String> palavras_temp = new ArrayList<>();
         String[] palavras = frase.split(" ");
 
         for (String palavra : palavras)
