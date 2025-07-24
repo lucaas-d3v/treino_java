@@ -29,11 +29,9 @@ public class ContaBancaria
         return frase.split(" ");
     }
 
-    public static double toDouble(String algo)
-    {
-        double valor = Double.parseDouble(algo);
-        return valor;
-    }
+    public static double toDouble(String algo) { return Double.parseDouble(algo); }
+
+    public static String toString(double algo) { return Double.toString(algo); }
 
     private void depositar(String cpf, HashMap<String, ArrayList<String>> dados, Scanner ler) {
         double valor_a_depositar = 0;
@@ -51,11 +49,23 @@ public class ContaBancaria
             break;
         }
 
-        String saldo_atual = dados.get(cpf).get(1);
+        String saldo_atual = dados.get(cpf).get(2);
 
-        this.saldo += toDouble(saldo_atual);
+        String novo_saldo = toString(toDouble(saldo_atual) + valor_a_depositar);
+
+        dados.get(cpf).set(2, novo_saldo);
+
+        mostrarPefil(dados.get(cpf).get(0), cpf, dados.get(cpf).get(1), ler, dados);
     }
 
+    private String getKeyByValue(final HashMap<String, String> map, final String value) {
+        return map.entrySet()
+                .stream()
+                .filter(e -> e.getValue().equals(value))
+                .findFirst()
+                .map(HashMap.Entry::getKey)
+                .orElse(null);
+    }
 
     private void sacar(HashMap<String, ArrayList<String>> dados, Scanner ler) {
         double valor_a_ser_sacado = 0;
@@ -73,9 +83,13 @@ public class ContaBancaria
             break;
         }
 
-        String saldo_atual = dados.get(cpf).get(1);
+        String saldo_atual = dados.get(dados.keySet()).get(2);
 
-        this.saldo -= toDouble(saldo_atual);
+        String novo_saldo = toString(toDouble(saldo_atual) - valor_a_ser_sacado);
+
+        dados.get(cpf).set(2, novo_saldo);
+
+        mostrarPefil(dados.get(cpf).get(0), cpf, dados.get(cpf).get(1), ler, dados);
     }
 
     private static String pedirNome(Scanner ler)
@@ -126,20 +140,23 @@ public class ContaBancaria
         }
     }
 
-    private void cadastro(Scanner ler, HashMap<String, ArrayList<String>> contas)
+    private void cadastro(Scanner ler)
     {
+
         Verificador isAlpha = new Verificador();
 
         this.nome = pedirNome(ler);
         this.email = pedirEmail(ler);
         this.cpf = pedirCpf(ler);
 
-        salvarConta(this.nome, this.email, this.cpf);
+        HashMap<String, ArrayList<String>> contas = new HashMap<>();
 
-        intersecao(nome, cpf, email, ler, contas);
+        HashMap<String, ArrayList<String>> banco = salvarConta(this.nome, this.email, this.cpf, contas);
+
+        intersecao(nome, cpf, email, ler, banco);
     }
 
-    public void intersecao(String nome, String cpf, String email, Scanner ler, HashMap<String, ArrayList<String>> contas)
+    public void intersecao(String nome, String cpf, String email, Scanner ler, HashMap<String, ArrayList<String>> banco)
     {
         while (true)
         {
@@ -160,12 +177,11 @@ public class ContaBancaria
             break;
         }
 
-        menuPrincipal(nome, cpf, email, ler, contas);
+        mostrarPefil(nome, cpf, email, ler, banco);
     }
 
     public void menuInicial(Scanner ler)
     {
-        HashMap<String, ArrayList<String>> contas = null;
 
         while (true)
         {
@@ -175,7 +191,7 @@ public class ContaBancaria
             if (Verificador.isNumber(acao)) {
                 switch (acao) {
                     case "1" -> {
-                        cadastro(ler, contas);
+                        cadastro(ler);
                         break;
                     }
 
@@ -190,9 +206,8 @@ public class ContaBancaria
         }
     }
 
-    public static HashMap<String, ArrayList<String>> salvarConta(String nome, String email, String cpf)
+    public static HashMap<String, ArrayList<String>> salvarConta(String nome, String email, String cpf, HashMap<String, ArrayList<String>> contas)
     {
-        HashMap<String, ArrayList<String>> contas = new HashMap<>();
         ArrayList<String> resto = new ArrayList<>();
 
         resto.add(nome);
@@ -204,14 +219,14 @@ public class ContaBancaria
         return contas;
     }
 
-    private void menuPrincipal(String nome, String cpf, String email, Scanner ler, HashMap<String, ArrayList<String>> contas)
+    private void mostrarPefil(String nome, String cpf, String email, Scanner ler, HashMap<String, ArrayList<String>> banco)
     {
         while (true) {
             System.out.println("========= Bem-Vindo! " + this.nome.split(" ")[0] + "=========");
             System.out.println("\n--------- Seus dados ---------");
-            System.out.println("\nNome completo: " + this.nome);
-            System.out.println("\nEmail: " + this.email);
-            System.out.println("\nSaldo: " + this.saldo);
+            System.out.println("\nNome completo: " + banco.get(cpf).get(0));
+            System.out.println("\nEmail: " + banco.get(cpf).get(1));
+            System.out.println("\nSaldo: " + banco.get(cpf).get(2));
 
             System.out.print("\n[1] Depositar\n[2] Scar\n\nOq quer fazer? ");
             String acao = ler.nextLine();
@@ -222,10 +237,10 @@ public class ContaBancaria
             }
 
             if (acao.equals("1")) {
-                depositar(cpf, contas, ler);
+                depositar(cpf, banco, ler);
 
             } else if (acao.equals("2")) {
-                sacar(contas, ler);
+                sacar(banco, ler);
 
             } else if (acao.equals("3")) {
                 System.out.println("\nSaindo...");
