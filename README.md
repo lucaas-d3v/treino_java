@@ -12,8 +12,8 @@ lucaas-d3v-treino_java-9cad6c6/
 ├── ArraysArrayList/         # Exercícios com arrays e ArrayList
 │   ├── Area.java            # Cálculo de área de figuras geométricas
 │   ├── Buscas.java          # Busca linear em array
-│   ├── CalculadoraIdade.java# Cálculo de idade baseado em ano de nascimento
-│   ├── CalculadoraMedia.java# Cálculo de média de notas
+│   ├── CalculadoraIdade.java # Cálculo de idade baseado em ano de nascimento
+│   ├── CalculadoraMedia.java # Cálculo de média de notas
 │   ├── ContadorFor.java     # Contagem usando for
 │   ├── ContadorPalavrasUnicas.java # Contagem de palavras únicas
 │   ├── EntradaSaidaSimples.java   # Leitura e escrita no console
