@@ -7,6 +7,7 @@ Este repositório reúne pequenos projetos e exercícios em Java para treinar co
 
 Estrutura do repositório
 
+```bash
 lucaas-d3v-treino_java-9cad6c6/
 ├── ArraysArrayList/         # Exercícios com arrays e ArrayList
 │   ├── Area.java            # Cálculo de área de figuras geométricas
@@ -27,7 +28,7 @@ lucaas-d3v-treino_java-9cad6c6/
 │       
 ├── .idea/                   # Configurações do IntelliJ IDEA
 └── XML/                      # Arquivos de configuração de projeto
-
+```
 
 ---
 
@@ -35,16 +36,16 @@ Como executar
 
 1. Clone este repositório
 
+```bash
 git clone https://github.com/seu-usuario/lucaas-d3v-treino_java-9cad6c6.git
 cd lucaas-d3v-treino_java-9cad6c6
-
+```
 
 2. Abra no IntelliJ IDEA
 
-Selecione File -> Open e escolha a pasta raiz lucaas-d3v-treino_java-9cad6c6.
+Selecione File -> Open e escolha a pasta raiz *lucaas-d3v-treino_java-9cad6c6.*
 
 O IntelliJ deve detectar automaticamente os módulos.
-
 
 
 3. Executar os exercícios
@@ -56,11 +57,6 @@ Para o projeto OO em treinoPoo:
 Abra Main.java em treinoPoo/src.
 
 Execute com ▶️.
-
-
-
-
-
 
 ---
 
