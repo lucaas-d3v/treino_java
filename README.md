@@ -75,21 +75,6 @@ Orientação a objetos: classes, métodos, encapsulamento.
 Validações: uso de utilitários para verificar formato de CPF e regras de senha.
 
 
-
----
-
-Próximos passos sugeridos
-
-Adicionar testes unitários com JUnit para funções de validação.
-
-Modularizar o código usando pacotes (package arrays, package poo).
-
-Criar um pom.xml para gerenciar dependências (Maven) e executar via mvn compile exec:java.
-
-Evoluir o treinoPoo para persistir dados em arquivo ou banco de dados simples.
-
-
-
 ---
 
 > Projeto criado por ~K' como parte do treinamento em Java. Feel free to contribute! 🚀
