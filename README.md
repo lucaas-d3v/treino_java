@@ -1,127 +1,99 @@
-# Repositório de Exercícios Java
+Treino Java
 
-Olá! Este repositório reúne meus arquivos de exercícios em Java, usados para treinar sintaxe e lógica básicos.  
-Os exercícios estão divididos em dois grupos:
+Este repositório reúne pequenos projetos e exercícios em Java para treinar conceitos básicos e intermediários da linguagem, incluindo manipulação de arrays, constantes, estruturas de repetição, classes, orientação a objetos e interação com o usuário.
 
-1. **Exercícios de Entrada e Saída / Estruturas de Repetição**  
-2. **Exercícios com Arrays e ArrayList**
 
 ---
 
-## 📁 Estrutura do Repositório
+Estrutura do repositório
 
-```markdown
-├── EntradaSaida/
-  |   #arquivos aqui
-└── ArraysArrayList/
-  |   #arquivos aqui
-```
----
+lucaas-d3v-treino_java-9cad6c6/
+├── ArraysArrayList/         # Exercícios com arrays e ArrayList
+│   ├── Area.java            # Cálculo de área de figuras geométricas
+│   ├── Buscas.java          # Busca linear em array
+│   ├── CalculadoraIdade.java# Cálculo de idade baseado em ano de nascimento
+│   ├── CalculadoraMedia.java# Cálculo de média de notas
+│   ├── ContadorFor.java     # Contagem usando for
+│   ├── ContadorPalavrasUnicas.java # Contagem de palavras únicas
+│   ├── EntradaSaidaSimples.java   # Leitura e escrita no console
+│   ├── NumeroMaior.java     # Encontra o maior número em um array
+│   └── ...                  # Outros exercícios de manipulação de listas e arrays
 
-## ⚙️ Pré-requisitos
+├── treinoPoo/               # Projeto de orientação a objetos
+│   └── src/
+│       ├── ContaBancaria.java# Classe que representa uma conta bancária
+│       ├── Verificador.java # Utilitário para validar CPF e senha
+│       └── Main.java        # Classe principal com menu de operações bancárias
+│       
+├── .idea/                   # Configurações do IntelliJ IDEA
+└── XML/                      # Arquivos de configuração de projeto
 
-- Java Development Kit (JDK) 8 ou superior instalado
-- Variável de ambiente `JAVA_HOME` configurada (opcional, mas recomendado)
-
----
-
-## 🛠️ Como Compilar
-
-1. Abra o terminal na raiz do repositório.
-2. Para compilar **todos** os arquivos de uma vez:
-
-```bash
-javac EntradaSaida/*.java ArraysArrayList/*.java
-```
-
-3. Ou compile um arquivo específico:
-
-```bash
-javac EntradaSaida/SomaDoisNumeros.java
-```
 
 ---
 
-## ▶️ Como Executar
+Como executar
 
-Depois de compilado, execute cada classe pelo nome. Exemplo:
+1. Clone este repositório
 
-```bash
-# Exemplo 1: soma dois números
-java EntradaSaida.SomaDoisNumeros
+git clone https://github.com/seu-usuario/lucaas-d3v-treino_java-9cad6c6.git
+cd lucaas-d3v-treino_java-9cad6c6
 
-# Exemplo 2: lista de tarefas
-java ArraysArrayList.ListaTarefas
-```
 
-> **Observação:** Se você não criou pacotes, pode rodar direto da raiz:
->
-> ```bash
-> java SomaDoisNumeros
-> ```
+2. Abra no IntelliJ IDEA
 
----
+Selecione File -> Open e escolha a pasta raiz lucaas-d3v-treino_java-9cad6c6.
 
-## 📋 Descrição dos Exercícios
+O IntelliJ deve detectar automaticamente os módulos.
 
-### 1. Entrada e Saída / Repetição
 
-* **EntradaSaidaSimples.java**
-  Demonstra uso de `Scanner` para ler dados do usuário e exibir mensagens.
 
-* **SomaDoisNumeros.java**
-  Lê dois números inteiros e imprime a soma.
+3. Executar os exercícios
 
-* **ParOuImpar.java**
-  Verifica se um número informado é par ou ímpar.
+Para os arquivos em ArraysArrayList, abra cada classe (public static void main) e clique no ícone ▶️ para rodar.
 
-* **CalculadoraMedia.java**
-  Calcula a média de uma sequência de notas/números informados.
+Para o projeto OO em treinoPoo:
 
-* **ContadorFor.java**
-  Exemplo de laço `for` para contar de 1 até N.
+Abra Main.java em treinoPoo/src.
 
-* **TabuadaWhile.java**
-  Gera a tabuada de um número usando `while`.
+Execute com ▶️.
 
-* **ValidacaoSenha.java**
-  Valida se a senha informada atende a certos critérios (por exemplo, tamanho mínimo).
 
-* **NumeroMaior.java**
-  Compara dois números e exibe qual é o maior.
 
-* **CalculadoraIdade.java**
-  Calcula a idade aproximada a partir do ano de nascimento informado.
 
-* **NumeroPrimo.java**
-  Verifica se um número é primo.
 
-### 2. Arrays e ArrayList
-
-* **CadastroNomes.java**
-  Armazena e exibe uma lista de nomes em um array.
-
-* **MediaNotas.java**
-  Calcula a média das notas armazenadas em um array.
-
-* **CopiaArrays.java**
-  Mostra como copiar conteúdos de um array para outro.
-
-* **BuscaArrayList.java**
-  Exemplo de pesquisa de elemento em um `ArrayList<String>`.
-
-* **RemocaoItens.java**
-  Remove itens de um `ArrayList` por índice ou valor.
-
-* **ListaTarefas.java**
-  App simples de terminal para adicionar, remover e listar tarefas usando `ArrayList`.
 
 ---
 
-## 📝 Licença
+Conteúdos abordados
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Arrays e ArrayList: inserção, busca, ordenação, contabilização.
+
+Estruturas de repetição: for, while.
+
+Estruturas de decisão: if, switch.
+
+Entrada e saída: Scanner, System.out.
+
+Orientação a objetos: classes, métodos, encapsulamento.
+
+Validações: uso de utilitários para verificar formato de CPF e regras de senha.
+
+
 
 ---
 
-Boa prática e bons estudos.
+Próximos passos sugeridos
+
+Adicionar testes unitários com JUnit para funções de validação.
+
+Modularizar o código usando pacotes (package arrays, package poo).
+
+Criar um pom.xml para gerenciar dependências (Maven) e executar via mvn compile exec:java.
+
+Evoluir o treinoPoo para persistir dados em arquivo ou banco de dados simples.
+
+
+
+---
+
+> Projeto criado por ~K' como parte do treinamento em Java. Feel free to contribute! 🚀
